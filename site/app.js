@@ -364,7 +364,7 @@ function heroHtml(it, i) {
   return `<section class="hero${fadeAttr(i)}${taken ? "; " : ""}" data-taken="${taken ? 1 : 0}"${""}>` +
     `<div class="hero-copy${taken ? " is-taken" : ""}">
       <p class="mono eyebrow amber">${esc(eyebrowOf(it, taken))}</p>
-      <h1 class="display">${esc(shortOf(it))}.</h1>
+      <h1 class="display">${esc(shortOf(it))}</h1>
       ${lede ? `<p class="lede">${esc(lede)}</p>` : ""}
       ${taken ? claimedHtml(s) : progressHtml(it, s)}
       <div class="actions">${primaryHtml(it, taken)}${moreHtml(it, taken)}<span class="price">${esc(priceText(it))}</span></div>
@@ -379,7 +379,7 @@ function moduleHtml(it, i) {
   return `<section class="module${fadeAttr(i)}${taken ? "; " : ""}" data-taken="${taken ? 1 : 0}">` +
     `<div class="mod-in${taken ? " is-taken" : ""}" style="display:contents">
       <p class="mono eyebrow amber">${esc(eyebrowOf(it, taken))}</p>
-      <h2 class="display md">${esc(shortOf(it))}.</h2>
+      <h2 class="display md">${esc(shortOf(it))}</h2>
       <p class="sub">${esc(sub)}</p>
       ${taken ? claimedHtml(s) : ""}
       <div class="actions center">${primaryHtml(it, taken)}${moreHtml(it, taken)}</div>
