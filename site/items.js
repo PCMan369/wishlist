@@ -37,7 +37,7 @@ window.WISHLIST_ITEMS = [
     ],
     version: [["Model", "iPhone 18 Pro (6.3-inch)"], ["Storage", "256GB"], ["Color", "Black"], ["Carrier", "Unlocked"]],
     why: "Essential for my business to grow. I would use it for communication with family, but it would also allow me to create my own Facebook Marketplace account so I can communicate with potential buyers directly, take better photos for faster sales, and more.",
-    whyThis: "I chose this color because I like it the best, the Pro model because it has a better camera which is important for selling computers, and Unlocked because it provides more freedom for the same price.",
+    whyThis: "I chose this color because I like it the best, the Pro model because it has a better camera, which is important for selling computers, and Unlocked because it provides more freedom for the same price.",
     notes: "", link: "https://www.apple.com/shop/buy-iphone/iphone-18-pro/6.3-inch-display-256gb-black-unlocked" },
 
   { id: "macbook", name: "MacBook Pro 14-inch (M6, Space Black)", short: "MacBook Pro 14-inch", tagline: "M6, 24GB, 1TB, Space Black",
