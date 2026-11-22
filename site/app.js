@@ -12,6 +12,7 @@ const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const ESC = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" };
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ESC[c]);
 const num = s => parseFloat(String(s ?? "").replace(/[^0-9.]/g, "")) || 0;
+const priceText = it => it.priceLabel || (it.priceN > 0 ? money(it.priceN) : "");
 const money = n => new Intl.NumberFormat("en-US", {
   style: "currency", currency: "USD",
   minimumFractionDigits: Number.isInteger(n) ? 0 : 2, maximumFractionDigits: 2
@@ -306,7 +307,7 @@ function renderChips() {
   if (ITEMS.length < 3) { box.hidden = true; return; }
   const chips = [{ id: "all", label: "All" }];
   if (!recipient) chips.push({ id: "open", label: "Still available" });
-  TIERS.filter(t => ITEMS.some(it => t.test(it.priceN))).forEach(t => chips.push(t));
+  TIERS.filter(t => ITEMS.some(it => it.priceN > 0 && t.test(it.priceN))).forEach(t => chips.push(t));
   if (!chips.some(c => c.id === filter)) filter = "all";
   box.innerHTML = chips.map(c => `<button type="button" class="pill-btn" data-filter="${c.id}" aria-pressed="${c.id === filter}">${esc(c.label)}</button>`).join("");
 }
@@ -342,6 +343,7 @@ function claimedHtml(s) {
 function primaryHtml(it, taken) {
   if (taken) return "";
   if (recipient || !state.live) return `<a class="btn primary" href="${hrefOf(it)}">View details</a>`;
+  if (it.joke) return `<button type="button" class="btn primary" data-joke="1">Try to claim it</button>`;
   return it.split
     ? `<button type="button" class="btn primary" data-chip="${esc(it.slug)}">Chip in</button>`
     : `<button type="button" class="btn primary" data-claim="${esc(it.slug)}">I'll get this one</button>`;
@@ -363,7 +365,7 @@ function heroHtml(it, i) {
       <h1 class="display">${esc(shortOf(it))}.</h1>
       ${lede ? `<p class="lede">${esc(lede)}</p>` : ""}
       ${taken ? claimedHtml(s) : progressHtml(it, s)}
-      <div class="actions">${primaryHtml(it, taken)}${moreHtml(it, taken)}<span class="price">${money(it.priceN)}</span></div>
+      <div class="actions">${primaryHtml(it, taken)}${moreHtml(it, taken)}<span class="price">${esc(priceText(it))}</span></div>
     </div>
     <a class="hero-art${taken ? " is-taken" : " hov"}" href="${hrefOf(it)}" aria-label="Details for ${esc(it.name)}">${plateHtml(it, true)}</a>
   </section>`;
@@ -371,7 +373,7 @@ function heroHtml(it, i) {
 
 function moduleHtml(it, i) {
   const { taken, s } = cardParts(it);
-  const sub = [taglineOf(it), money(it.priceN)].filter(Boolean).join(". ") + ".";
+  const sub = [taglineOf(it), priceText(it)].filter(Boolean).join(". ") + ".";
   return `<section class="module${fadeAttr(i)}${taken ? "; " : ""}" data-taken="${taken ? 1 : 0}">` +
     `<div class="mod-in${taken ? " is-taken" : ""}" style="display:contents">
       <p class="mono eyebrow amber">${esc(eyebrowOf(it, taken))}</p>
@@ -387,7 +389,7 @@ function moduleHtml(it, i) {
 
 function tileHtml(it, i) {
   const { taken, s } = cardParts(it);
-  const sub = [taglineOf(it), money(it.priceN)].filter(Boolean).join(". ") + ".";
+  const sub = [taglineOf(it), priceText(it)].filter(Boolean).join(". ") + ".";
   return `<section class="tile${fadeAttr(i)}${taken ? "; " : ""}" data-taken="${taken ? 1 : 0}">` +
     `<div class="tile-in${taken ? " is-taken" : ""}" style="display:contents">
       <p class="mono eyebrow ${taken ? "" : "amber"}">${esc(eyebrowOf(it, taken))}</p>
@@ -405,7 +407,7 @@ function tileHtml(it, i) {
 function renderList(animate) {
   fadeOn = !!animate;
   const tier = TIERS.find(t => t.id === filter);
-  const items = ITEMS.filter(it => filter === "open" ? !takenOf(it) : tier ? tier.test(it.priceN) : true);
+  const items = ITEMS.filter(it => filter === "open" ? !takenOf(it) : tier ? (it.priceN > 0 && tier.test(it.priceN)) : true);
   // Still-available items first, then by how much he wants them, then in the order written.
   items.sort((a, b) => takenOf(a) - takenOf(b) || (RANK[a.priority] ?? 9) - (RANK[b.priority] ?? 9) || a.idx - b.idx);
 
@@ -448,7 +450,7 @@ function drawerHtml(it) {
   return `
     ${gallery}
     <h2 class="dtitle" id="dTitle">${esc(it.name)}</h2>
-    <div class="dprice"><span>${money(it.priceN)}</span>${it.split ? `<span class="tag">Split OK</span>` : ""}</div>
+    <div class="dprice"><span>${esc(priceText(it))}</span>${it.split ? `<span class="tag">Split OK</span>` : ""}</div>
     <div id="claimBox"></div>
     ${version.length ? `<section class="dsec"><span class="label mono">Make sure it's this version</span><dl class="rows">${version.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl></section>` : ""}
     ${stores.length ? `<section class="dsec"><span class="label mono">Where to buy</span><div class="rows">${stores.map(s => `<a href="${esc(s.link)}" target="_blank" rel="noopener"><span class="rname">${esc(s.name)} ↗${hi > lo && num(s.price) === lo ? `<span class="lowest">LOWEST</span>` : ""}</span><span class="rprice">${money(num(s.price))}</span></a>`).join("")}</div>${extras}</section>`
@@ -490,6 +492,7 @@ function claimHtml(it) {
   if (!state.ready) return `<div class="claim"><p class="mini">Checking if it's still available…</p></div>`;
   if (!state.live) return `<div class="claim"><p class="mini">Claims aren't loading right now. Please refresh in a moment before you buy, so nobody doubles up.</p></div>`;
 
+  if (it.joke) return `<div class="claim"><p class="mini">${esc(it.jokeNote || "Not actually desired. You're welcome to try claiming it, but it won't work.")}</p></div>`;
   const s = statusOf(it);
   const me = state.name ? `<p class="mini">Claiming as <b>${esc(state.name)}</b> · <button type="button" class="linkbtn" data-act="rename">change</button></p>` : "";
 
@@ -523,9 +526,10 @@ function footHtml(it) {
   const stores = it.stores || [];
   const best = stores.length ? stores.reduce((a, b) => num(b.price) < num(a.price) ? b : a) : null;
   const href = best ? best.link : it.link;
-  const label = best ? `Buy at ${best.name} ↗` : "Open product page ↗";
+  const label = it.joke ? "View listing ↗" : best ? `Buy at ${best.name} ↗` : "Open product page ↗";
   let primary = "";
-  if (showsClaims() && !statusOf(it).taken) {
+  if (it.joke && showsClaims()) primary = `<button type="button" class="btn primary" data-act="joke">Try to claim it</button>`;
+  else if (showsClaims() && !statusOf(it).taken) {
     primary = it.split
       ? `<button type="button" class="btn primary" data-act="scroll-claim">Chip in</button>`
       : `<button type="button" class="btn primary" data-act="full">I'll get this one</button>`;
@@ -697,6 +701,7 @@ async function start() {
   });
 
   $("#list").addEventListener("click", e => {
+    if (e.target.closest("[data-joke]")) { toast("Nice try. This one is a joke, so it can't be claimed."); return; }
     const claim = e.target.closest("[data-claim]");
     if (claim) { const it = ITEMS.find(x => x.slug === claim.dataset.claim); if (it) guard(() => doClaimFull(it)); return; }
     const chip = e.target.closest("[data-chip]");
@@ -727,6 +732,7 @@ async function start() {
       return;
     }
     if (b.dataset.remove) return guard(() => doRemove(b.dataset.remove));
+    if (b.dataset.act === "joke") { toast("Nice try. This one is a joke, so it can't be claimed."); return; }
     if (b.dataset.act === "full") return guard(() => doClaimFull(it));
     if (b.dataset.act === "pledge") return guard(() => doPledge(it));
     if (b.dataset.act === "scroll-claim") { const box = $("#claimBox"); if (box) box.scrollIntoView({ block: "center", behavior: "smooth" }); return; }

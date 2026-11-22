@@ -15,6 +15,9 @@
    condition   whether used or refurbished is okay
    fill        true crops photos in to fill the frame (use when the product looks small in a wide photo)
    zoom        extra zoom with fill, e.g. 1.2 (optional)
+   joke        true makes it a gag item: "Try to claim it" just says no, nothing is saved
+   jokeNote    the line shown in the details panel for a joke item (optional)
+   priceLabel  text shown instead of a price, e.g. "Priceless" (optional)
    notes       a short extra line (e.g. a sale-price note)
    why         why you want it            whyThis    why this exact model
    substitutes what would be fine instead unacceptable what would not be
@@ -65,5 +68,10 @@ window.WISHLIST_ITEMS = [
     price: "$49.99", priority: "standard",
     stores: [{ name: "Amazon", price: "$49.99", link: "https://a.co/d/042eOTYC" }],
     version: [["Model", "B10 Pro Max"], ["Color", "Grey"]],
-    notes: "Black Friday price. Regular price is $79.99.", link: "https://a.co/d/042eOTYC" }
+    notes: "Black Friday price. Regular price is $79.99.", link: "https://a.co/d/042eOTYC" },
+
+  { id: "tech-way", name: "325 Tech Way, Grants Pass, OR (commercial property)", short: "325 Tech Way", tagline: "Commercial property, Grants Pass, OR", badge: "Aspirational",
+    images: [], priority: "discretionary", joke: true,
+    stores: [], version: [],
+    notes: "Not actually desired. Purely aspirational.", link: "https://www.loopnet.com/Listing/325-Tech-Way-Grants-Pass-OR/43295894/" }
 ];

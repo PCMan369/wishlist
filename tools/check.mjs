@@ -55,7 +55,7 @@ if (Array.isArray(ITEMS)) {
     if (seen.has(slug)) fail(`${label}: the id "${slug}" is used twice. Each item needs its own.`);
     seen.add(slug);
     const prices = (it.stores || []).map(s => num(s.price)).filter(Boolean);
-    if (!num(it.price) && !prices.length) fail(`${label}: needs a price.`);
+    if (!it.joke && !num(it.price) && !prices.length) fail(`${label}: needs a price.`);
     if (it.priority && !PRIORITIES.includes(it.priority)) fail(`${label}: priority must be one of ${PRIORITIES.join(", ")}.`);
     if (it.images !== undefined && (!Array.isArray(it.images) || it.images.some(u => !isUrl(u)))) fail(`${label}: images must be a list of web addresses starting with https://`);
     if (it.link && !isUrl(it.link)) fail(`${label}: link must start with https://`);
