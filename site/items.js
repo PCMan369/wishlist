@@ -35,7 +35,7 @@ window.WISHLIST_ITEMS = [
       { name: "Amazon", price: "$1,439.00", link: "https://www.amazon.com/dp/B0HJHVB95Z" }
     ],
     version: [["Model", "iPhone 18 Pro (6.3-inch)"], ["Storage", "256GB"], ["Color", "Black"], ["Carrier", "Unlocked"]],
-    why: "Essential for my business to grow. I would use it for communication with family, but it would also allow me to create my own Facebook Marketplace account so I can communicate with potential buyers directly, take significantly better photos for faster sales, and more.",
+    why: "Essential for my business to grow. I would use it for communication with family, but it would also allow me to create my own Facebook Marketplace account so I can communicate with potential buyers directly, take better photos for faster sales, and more.",
     notes: "", link: "https://www.apple.com/shop/buy-iphone/iphone-18-pro/6.3-inch-display-256gb-black-unlocked" },
 
   { id: "macbook", name: "MacBook Pro 14-inch (M6, Space Black)", short: "MacBook Pro 14", tagline: "M6, 24GB, 1TB, Space Black",
