@@ -53,7 +53,7 @@ window.WISHLIST_ITEMS = [
     ],
     version: [["Size", "14-inch"], ["Chip", "Apple M6 (12-core CPU, 12-core GPU)"], ["Memory", "24GB"], ["Storage", "1TB"], ["Color", "Space Black"]],
     why: "Mine is old, slow, and loud, and has poor battery life. It is at least 7 years old and feels that way too. I would use a new one for personal use, school, possibly games, and business stuff. It is true that I can do all of those things now, but not without some difficulty.",
-    whyThis: "I chose this color because I like it the best, 24GB RAM because it is only +$200 over 16GB, which is great in this economy, and 14-inch because I prefer the portability of smaller laptops.",
+    whyThis: "I chose this color because I like it the best, 24GB RAM because it is only +$200 over 16GB (which is great in this economy), and 14-inch because I prefer the portability of smaller laptops.",
     notes: "", link: "https://www.apple.com/shop/buy-mac/macbook-pro/14-inch-space-black-standard-display-apple-m6-chip-12-core-cpu-12-core-gpu-24gb-memory-1tb-storage" },
 
   { id: "screwdriver", name: "Fanttik E2 Ultra Electric Screwdriver (Grey)", short: "Fanttik E2 Ultra", tagline: "Electric screwdriver",
