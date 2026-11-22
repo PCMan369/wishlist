@@ -1,0 +1,35 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Claims live in one collection. Each document is one claim or one chip-in.
+    match /pledges/{pledgeId} {
+      allow read: if true;
+
+      // Only well-formed claims can be added: a name, an item, and either
+      // "the whole item" (amount null, fixed document id so nobody can double-claim)
+      // or a positive dollar amount.
+      allow create: if request.resource.data.keys().hasOnly(['itemId', 'name', 'amount', 'ts'])
+        && request.resource.data.keys().hasAll(['itemId', 'name', 'amount', 'ts'])
+        && request.resource.data.itemId is string
+        && request.resource.data.itemId.size() > 0
+        && request.resource.data.itemId.size() <= 60
+        && request.resource.data.name is string
+        && request.resource.data.name.size() > 0
+        && request.resource.data.name.size() <= 40
+        && request.resource.data.ts == request.time
+        && (
+          (request.resource.data.amount == null
+            && pledgeId == 'full_' + request.resource.data.itemId)
+          ||
+          (request.resource.data.amount is number
+            && request.resource.data.amount > 0
+            && request.resource.data.amount <= 100000)
+        );
+
+      // Claims are never edited, only added or removed.
+      allow update: if false;
+      allow delete: if true;
+    }
+  }
+}
