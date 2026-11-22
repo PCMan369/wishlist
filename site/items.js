@@ -37,6 +37,7 @@ window.WISHLIST_ITEMS = [
     ],
     version: [["Model", "iPhone 18 Pro (6.3-inch)"], ["Storage", "256GB"], ["Color", "Black"], ["Carrier", "Unlocked"]],
     why: "Essential for my business to grow. I would use it for communication with family, but it would also allow me to create my own Facebook Marketplace account so I can communicate with potential buyers directly, take better photos for faster sales, and more.",
+    whyThis: "I chose this color because I like it the best, the Pro model because it has a better camera which is important for selling computers, and Unlocked because it provides more freedom for the same price.",
     notes: "", link: "https://www.apple.com/shop/buy-iphone/iphone-18-pro/6.3-inch-display-256gb-black-unlocked" },
 
   { id: "macbook", name: "MacBook Pro 14-inch (M6, Space Black)", short: "MacBook Pro 14-inch", tagline: "M6, 24GB, 1TB, Space Black",
@@ -52,6 +53,7 @@ window.WISHLIST_ITEMS = [
     ],
     version: [["Size", "14-inch"], ["Chip", "Apple M6 (12-core CPU, 12-core GPU)"], ["Memory", "24GB"], ["Storage", "1TB"], ["Color", "Space Black"]],
     why: "Mine is old, slow, and loud, and has poor battery life. It is at least 7 years old and feels that way too. I would use a new one for personal use, school, possibly games, and business stuff. It is true that I can do all of those things now, but not without some difficulty.",
+    whyThis: "I chose this color because I like it the best, 24GB RAM because it is only +$200 over 16GB, which is great in this economy, and 14-inch because I prefer the portability of smaller laptops.",
     notes: "", link: "https://www.apple.com/shop/buy-mac/macbook-pro/14-inch-space-black-standard-display-apple-m6-chip-12-core-cpu-12-core-gpu-24gb-memory-1tb-storage" },
 
   { id: "screwdriver", name: "Fanttik E2 Ultra Electric Screwdriver (Grey)", short: "Fanttik E2 Ultra", tagline: "Electric screwdriver",
@@ -63,6 +65,7 @@ window.WISHLIST_ITEMS = [
     stores: [{ name: "Amazon", price: "$52.99", link: "https://www.amazon.com/dp/B0DSVKLNQR" }],
     version: [["Model", "E2 Ultra"], ["Color", "Grey"]],
     why: "Increases efficiency and speed of PC builds, thereby increasing my profit per hour.",
+    whyThis: "I chose this model because it is a known-reliable unit, has plenty of bits, and has a good battery life.",
     notes: "", link: "https://www.amazon.com/dp/B0DSVKLNQR" },
 
   { id: "air-duster", name: "Fanttik B10 Pro Max Electric Air Duster with Powerbank (Grey)", short: "Fanttik B10 Pro Max", tagline: "Electric air duster", badge: "Black Friday price",
@@ -73,6 +76,7 @@ window.WISHLIST_ITEMS = [
     stores: [{ name: "Amazon", price: "$49.99", link: "https://a.co/d/042eOTYC" }],
     version: [["Model", "B10 Pro Max"], ["Color", "Grey"]],
     why: "Easier and ultimately cheaper than canned air for cleaning PC parts.",
+    whyThis: "I chose this model because it is a known-reliable unit, with multiple attachments and accessories useful for my purposes.",
     notes: "Black Friday price. Regular price is $79.99.", link: "https://a.co/d/042eOTYC" },
 
   { id: "tech-way", name: "325 Tech Way Industrial Park, Grants Pass, OR (Units C and D)", short: "325 Tech Way", tagline: "Industrial space for lease, Grants Pass, OR", badge: "Aspirational",
@@ -82,5 +86,6 @@ window.WISHLIST_ITEMS = [
     stores: [],
     version: [["Unit C", "5,000 SF, about $4,000/month"], ["Unit D", "4,000 SF, about $3,200/month"], ["Use", "Industrial, full build-out"], ["Term", "Negotiable"], ["Available", "Jan 1, 2027"]],
     why: "I don't actually want this, although extra space would be nice, as my room feels pretty small.",
+    whyThis: "Again, I don't actually want this, but I picked it because it is in town and on \"Tech Way,\" which adds to the humor.",
     notes: "Not actually desired. Purely aspirational.", link: "https://www.loopnet.com/Listing/325-Tech-Way-Grants-Pass-OR/43295894/" }
 ];
