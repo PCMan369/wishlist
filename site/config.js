@@ -25,7 +25,7 @@ window.WISHLIST_CONFIG = {
 
   // FAMILY PASSWORD: open tools/set-password.html, type a password, paste the line it gives you here.
   // Leave "" to turn the password screen off (fine while you're still building).
-  passwordHash: "",
+  passwordHash: "cc9ce5859e001a57edbb43ba3171cae0095cc6a2c5a38a09687c90b368c9f6ca",
 
   // YOUR PRIVATE VIEW: open the site once with  ?as=<this key>  on each of your own devices
   // and claims stay hidden from you on that device. Change this key to anything you like.
