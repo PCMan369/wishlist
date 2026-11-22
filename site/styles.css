@@ -259,3 +259,8 @@ input:focus-visible{outline:2px solid var(--ink);outline-offset:1px}
 /* Uncropped photos (any shape): always shown whole, centered, with a little breathing room. */
 .plate img:not(.fill){position:absolute;inset:0;width:100%;height:100%;max-width:none;max-height:none;object-fit:contain;padding:7%;box-sizing:border-box}
 .slide img:not(.fill){width:100%;height:100%;max-width:none;max-height:none;object-fit:contain}
+
+/* Details gallery: the slides fill the frame exactly, so a photo can never be taller than it. */
+.stage .slides{position:absolute;inset:0;height:auto}
+.slide{position:relative}
+.slide img:not(.fill){position:absolute;inset:0;padding:14px;box-sizing:border-box}
