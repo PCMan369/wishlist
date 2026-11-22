@@ -34,9 +34,9 @@ window.WISHLIST_CONFIG = {
   // FIREBASE (stores who is buying what). Paste the four values from SETUP.md step 2.
   // While apiKey is "", the site runs in preview mode and claims only save on your own device.
   firebase: {
-    apiKey: "",
-    authDomain: "",
-    projectId: "",
-    appId: ""
+    apiKey: "AIzaSyDv1bUX0NG2422t6W3FrAPfC__f3q_7w_0",
+    authDomain: "jacob-wishlist.firebaseapp.com",
+    projectId: "jacob-wishlist",
+    appId: "1:562842519666:web:429bfa38ca322e55a25aeb"
   }
 };
