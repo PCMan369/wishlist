@@ -40,7 +40,7 @@ const ITEMS = RAW.map((it, idx) => {
 
 const imgsOf = it => (it.images && it.images.length ? it.images : (it.image ? [it.image] : []));
 const imgHtml = (src, it, eager) =>
-  `<img src="${esc(src)}" alt="${esc(it.name)}" loading="${eager ? "eager" : "lazy"}" decoding="async" referrerpolicy="no-referrer" data-ph="${esc(shortOf(it).charAt(0).toUpperCase())}">`;
+  `<img${it.fill ? ` class="fill"${it.zoom ? ` style="--z:${Number(it.zoom) || 1}"` : ""}` : ""} src="${esc(src)}" alt="${esc(it.name)}" loading="${eager ? "eager" : "lazy"}" decoding="async" referrerpolicy="no-referrer" data-ph="${esc(shortOf(it).charAt(0).toUpperCase())}">`;
 const plateHtml = (it, eager) => {
   const imgs = imgsOf(it);
   return `<div class="plate art">${imgs.length ? imgHtml(imgs[0], it, eager) : `<span class="ph" aria-hidden="true">${esc(shortOf(it).charAt(0).toUpperCase())}</span>`}</div>`;

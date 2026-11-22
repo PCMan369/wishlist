@@ -13,6 +13,8 @@
    stores      [{ name, price, link }, ...] one row per store; the lowest price is marked
    version     the few details that decide WHICH one to buy: [["Storage","256GB"], ["Color","Black"]]
    condition   whether used or refurbished is okay
+   fill        true crops photos in to fill the frame (use when the product looks small in a wide photo)
+   zoom        extra zoom with fill, e.g. 1.2 (optional)
    notes       a short extra line (e.g. a sale-price note)
    why         why you want it            whyThis    why this exact model
    substitutes what would be fine instead unacceptable what would not be
@@ -20,7 +22,9 @@
    ===================================================== */
 window.WISHLIST_ITEMS = [
   { id: "iphone", name: "iPhone 18 Pro, 256GB (Black, Unlocked)", short: "iPhone 18 Pro", tagline: "256GB, Black, unlocked",
-    images: ["https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-18-pro-finish-select-202609-6-3inch-black?wid=1200&hei=630&fmt=jpeg&qlt=95&.v=1787003534949"],
+    images: ["https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-18-pro-finish-select-202609-6-3inch-black?wid=1200&hei=630&fmt=jpeg&qlt=95&.v=1787003534949",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/iphone-18-pro-finish-select-202609-6-3inch-black_AV2?wid=1600&hei=900&fmt=webp&qlt=90&.v=ODB3TEdtbk8ybkd3clM3dWVML3VCYTBPcjFUQzN2eEEzbTlaeVZmVmk4UDFzS1BRRzA4NTJUci9vckVTY21rMzFpZXI3TzRVNFlCMkNIUFdtczRsaFE3b3pFWnhZZ2g0M0pRR0pEdHVSRUhOWndGa21oeDRMUFpMS1Q1YVdyV3ZVZ29LbmZmVHFFT3J2WVBRVVhBa0VR"],
+    fill: true,
     price: "$1,199.00", priority: "critical",
     split: true,
     stores: [
@@ -31,7 +35,10 @@ window.WISHLIST_ITEMS = [
     notes: "", link: "https://www.apple.com/shop/buy-iphone/iphone-18-pro/6.3-inch-display-256gb-black-unlocked" },
 
   { id: "macbook", name: "MacBook Pro 14-inch (M6, Space Black)", short: "MacBook Pro 14", tagline: "M6, 24GB, 1TB, Space Black",
-    images: ["https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/mac-macbook-pro-specs-select-202610-14inch-spaceblack?wid=1200&hei=630&fmt=jpeg&qlt=95&.v=1791280428475"],
+    images: ["https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/mac-macbook-pro-specs-select-202610-14inch-spaceblack?wid=1200&hei=630&fmt=jpeg&qlt=95&.v=1791280428475",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/mac-macbook-pro-finish-select-202610-14inch-spaceblack?wid=1600&hei=1026&fmt=webp&qlt=90&.v=aXlkdGF0T0RUUVdDckNLaUc0OEE0MEhGUTRkVVZndC9KWVVLOUdiOXdHbFRUUTNjeHpBQ2xlWU1qZ2FZVVlxYzRmRTZ3YnV6NGtLcENrcTFmd0VGckVvbDF6d2tlR0VmV2RIWCtmOCtid1czZXVXV1c0YmpUU3ozTnlwWXlrUjhac0N0R1I1WjVLaWpwaDBWekNtTmxn",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/mac-macbook-pro-finish-select-202610-14inch-spaceblack_AV3?wid=1600&hei=1026&fmt=webp&qlt=90&.v=aXlkdGF0T0RUUVdDckNLaUc0OEE0MEhGUTRkVVZndC9KWVVLOUdiOXdHbFRUUTNjeHpBQ2xlWU1qZ2FZVVlxY29xbGU4dEZRUmMxczltR3FlRDU1d1FPSHBTMDVNTCtFMWdCbVRyd3l2VzlOU1YvbEhQdCtlZmMrckc2K3RtQzRhUGRzYld3U091Q1VrT0lleDcvOXJR"],
+    fill: true,
     price: "$2,199.00", priority: "high",
     split: true,
     stores: [

@@ -247,3 +247,9 @@ input:focus-visible{outline:2px solid var(--ink);outline-offset:1px}
   .hero,.module,.tile{background:#fff;color:#000;break-inside:avoid}
   .display,.sub,.lede{color:#000!important}
 }
+
+/* Photos: white backgrounds melt into the light plate. "fill" (items.js) crops in so a small product is not lost in a wide photo. */
+.plate img,.slide img,.thumbs img{mix-blend-mode:multiply}
+.plate img.fill,.slide img.fill,.thumbs img.fill{width:100%;height:100%;max-width:none;max-height:none;object-fit:cover;transform:scale(var(--z,1))}
+.slide:has(img.fill){padding:0}
+.thumbs button:has(img.fill){padding:0}
