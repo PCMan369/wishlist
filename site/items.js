@@ -39,7 +39,7 @@ window.WISHLIST_ITEMS = [
     why: "Essential for my business to grow. I would use it for communication with family, but it would also allow me to create my own Facebook Marketplace account so I can communicate with potential buyers directly, take better photos for faster sales, and more.",
     notes: "", link: "https://www.apple.com/shop/buy-iphone/iphone-18-pro/6.3-inch-display-256gb-black-unlocked" },
 
-  { id: "macbook", name: "MacBook Pro 14-inch (M6, Space Black)", short: "MacBook Pro 14", tagline: "M6, 24GB, 1TB, Space Black",
+  { id: "macbook", name: "MacBook Pro 14-inch (M6, Space Black)", short: "MacBook Pro 14-inch", tagline: "M6, 24GB, 1TB, Space Black",
     images: ["https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/mac-macbook-pro-specs-select-202610-14inch-spaceblack?wid=1200&hei=630&fmt=jpeg&qlt=95&.v=1791280428475",
       "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/mac-macbook-pro-finish-select-202610-14inch-spaceblack?wid=5120&hei=3280&fmt=webp&qlt=90&.v=aXlkdGF0T0RUUVdDckNLaUc0OEE0MEhGUTRkVVZndC9KWVVLOUdiOXdHbFRUUTNjeHpBQ2xlWU1qZ2FZVVlxYzRmRTZ3YnV6NGtLcENrcTFmd0VGckVvbDF6d2tlR0VmV2RIWCtmOCtid1czZXVXV1c0YmpUU3ozTnlwWXlrUjhac0N0R1I1WjVLaWpwaDBWekNtTmxn&traceId=1",
       "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/mac-macbook-pro-finish-select-202610-14inch-spaceblack_AV3?wid=5120&hei=3280&fmt=webp&qlt=90&.v=aXlkdGF0T0RUUVdDckNLaUc0OEE0MEhGUTRkVVZndC9KWVVLOUdiOXdHbFRUUTNjeHpBQ2xlWU1qZ2FZVVlxY29xbGU4dEZRUmMxczltR3FlRDU1d1FPSHBTMDVNTCtFMWdCbVRyd3l2VzlOU1YvbEhQdCtlZmMrckc2K3RtQzRhUGRzYld3U091Q1VrT0lleDcvOXJR&traceId=1"],
