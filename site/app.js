@@ -435,7 +435,7 @@ function drawerHtml(it) {
   const prices = stores.map(s => num(s.price)), lo = Math.min(...prices), hi = Math.max(...prices);
 
   const gallery = imgs.length
-    ? `<div class="stage" id="stage" ${imgs.length > 1 ? 'tabindex="0" aria-label="Photos. Swipe or use the arrow keys."' : ""}>
+    ? `<div class="stage${it.fill ? " wide" : ""}" id="stage" ${imgs.length > 1 ? 'tabindex="0" aria-label="Photos. Swipe or use the arrow keys."' : ""}>
          <div class="slides" id="slides">${imgs.map((s, k) => `<div class="slide">${imgHtml(s, it, k === 0)}</div>`).join("")}</div>
          ${imgs.length > 1 ? `<button type="button" class="nav prev" id="prevPic" aria-label="Previous photo">&#8249;</button><button type="button" class="nav next" id="nextPic" aria-label="Next photo">&#8250;</button><span class="count mono" id="count">1 / ${imgs.length}</span>` : ""}
        </div>
