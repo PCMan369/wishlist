@@ -70,8 +70,11 @@ window.WISHLIST_ITEMS = [
     version: [["Model", "B10 Pro Max"], ["Color", "Grey"]],
     notes: "Black Friday price. Regular price is $79.99.", link: "https://a.co/d/042eOTYC" },
 
-  { id: "tech-way", name: "325 Tech Way, Grants Pass, OR (commercial property)", short: "325 Tech Way", tagline: "Commercial property, Grants Pass, OR", badge: "Aspirational",
-    images: [], priority: "discretionary", joke: true,
-    stores: [], version: [],
+  { id: "tech-way", name: "325 Tech Way Industrial Park, Grants Pass, OR (Units C and D)", short: "325 Tech Way", tagline: "Industrial space for lease, Grants Pass, OR", badge: "Aspirational",
+    images: ["https://images1.loopnet.com/i2/IPj7i_A4xNAkFVOrPt9iAL3CDDHUsDThuwJ_LZaVUz4/112/image.jpg",
+      "https://images1.loopnet.com/i2/0lIKkk5rIjQBiAMf8mslMxBrhO22p-uUuEzx6NpkO5w/117/image.jpg"],
+    priority: "discretionary", joke: true, priceLabel: "$9.60 /SF/yr",
+    stores: [],
+    version: [["Unit C", "5,000 SF, about $4,000/month"], ["Unit D", "4,000 SF, about $3,200/month"], ["Use", "Industrial, full build-out"], ["Term", "Negotiable"], ["Available", "Jan 1, 2027"]],
     notes: "Not actually desired. Purely aspirational.", link: "https://www.loopnet.com/Listing/325-Tech-Way-Grants-Pass-OR/43295894/" }
 ];
