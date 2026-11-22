@@ -452,7 +452,7 @@ function drawerHtml(it) {
     <h2 class="dtitle" id="dTitle">${esc(it.name)}</h2>
     <div class="dprice"><span>${esc(priceText(it))}</span>${it.split ? `<span class="tag">Split OK</span>` : ""}</div>
     <div id="claimBox"></div>
-    ${version.length ? `<section class="dsec"><span class="label mono">Make sure it's this version</span><dl class="rows">${version.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl></section>` : ""}
+    ${version.length ? `<section class="dsec"><span class="label mono">${esc(it.versionTitle || "Make sure it's this version")}</span><dl class="rows">${version.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl></section>` : ""}
     ${stores.length ? `<section class="dsec"><span class="label mono">Where to buy</span><div class="rows">${stores.map(s => `<a href="${esc(s.link)}" target="_blank" rel="noopener"><span class="rname">${esc(s.name)} ↗${hi > lo && num(s.price) === lo ? `<span class="lowest">LOWEST</span>` : ""}</span><span class="rprice">${money(num(s.price))}</span></a>`).join("")}</div>${extras}</section>`
       : (extras || link) ? `<section class="dsec">${extras}</section>` : ""}
     ${(it.why || it.whyThis) ? `<section class="dsec"><span class="label mono">Why I want this</span>${it.why ? `<p>${esc(it.why)}</p>` : ""}${it.whyThis ? `<h5>Why this exact one</h5><p>${esc(it.whyThis)}</p>` : ""}</section>` : ""}

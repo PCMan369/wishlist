@@ -15,6 +15,7 @@
    condition   whether used or refurbished is okay
    fill        true crops photos in to fill the frame (use when the product looks small in a wide photo)
    zoom        extra zoom with fill, e.g. 1.2 (optional)
+   versionTitle  heading above the version rows, instead of "Make sure it's this version" (optional)
    joke        true makes it a gag item: "Try to claim it" just says no, nothing is saved
    jokeNote    the line shown in the details panel for a joke item (optional)
    priceLabel  text shown instead of a price, e.g. "Priceless" (optional)
@@ -77,7 +78,7 @@ window.WISHLIST_ITEMS = [
   { id: "tech-way", name: "325 Tech Way Industrial Park, Grants Pass, OR (Units C and D)", short: "325 Tech Way", tagline: "Industrial space for lease, Grants Pass, OR", badge: "Aspirational",
     images: ["https://images1.loopnet.com/i2/IPj7i_A4xNAkFVOrPt9iAL3CDDHUsDThuwJ_LZaVUz4/112/image.jpg",
       "https://images1.loopnet.com/i2/0lIKkk5rIjQBiAMf8mslMxBrhO22p-uUuEzx6NpkO5w/117/image.jpg"],
-    priority: "discretionary", joke: true, priceLabel: "$9.60 /SF/yr",
+    priority: "discretionary", joke: true, versionTitle: "Available spaces", priceLabel: "$9.60 /SF/yr",
     stores: [],
     version: [["Unit C", "5,000 SF, about $4,000/month"], ["Unit D", "4,000 SF, about $3,200/month"], ["Use", "Industrial, full build-out"], ["Term", "Negotiable"], ["Available", "Jan 1, 2027"]],
     why: "I don't actually want this, although extra space would be nice, as my room feels pretty small.",
