@@ -103,7 +103,8 @@ async function boot() {
 
   if (!C.passwordHash) return start();
   try {
-    if (LS.get("wl_auth") === C.passwordHash) return start();
+    let sess = null; try { sess = sessionStorage.getItem("wl_auth"); } catch { /* ignore */ }
+    if (LS.get("wl_auth") === C.passwordHash || sess === C.passwordHash) return start();
     if (linkKey && (await hashPw(linkKey)) === C.passwordHash) {
       LS.set("wl_auth", C.passwordHash);
       return start();
@@ -122,7 +123,8 @@ function showGate() {
     const card = $(".gate-card"), err = $("#gateErr");
     try {
       if ((await hashPw(pw)) === C.passwordHash) {
-        LS.set("wl_auth", C.passwordHash);
+        if ($("#gateKeep").checked) LS.set("wl_auth", C.passwordHash);
+        else { try { sessionStorage.setItem("wl_auth", C.passwordHash); } catch { /* ignore */ } }
         $("#gate").hidden = true;
         start();
         return;

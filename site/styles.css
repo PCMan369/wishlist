@@ -264,3 +264,6 @@ input:focus-visible{outline:2px solid var(--ink);outline-offset:1px}
 .stage .slides{position:absolute;inset:0;height:auto}
 .slide{position:relative}
 .slide img:not(.fill){position:absolute;inset:0;padding:14px;box-sizing:border-box}
+
+.keep{display:flex;align-items:center;gap:10px;font-size:15px;color:var(--muted);cursor:pointer}
+.keep input{width:20px;height:20px;accent-color:#F5F5F7;flex:none}
