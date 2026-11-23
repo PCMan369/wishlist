@@ -377,7 +377,7 @@ function moduleHtml(it, i) {
   const { taken, s } = cardParts(it);
   const sub = [taglineOf(it), priceText(it)].filter(Boolean).join(". ") + ".";
   return `<section class="module${fadeAttr(i)}${taken ? "; " : ""}" data-taken="${taken ? 1 : 0}">` +
-    `<div class="mod-in${taken ? " is-taken" : ""}" style="display:contents">
+    `<div class="mod-text mod-in${taken ? " is-taken" : ""}">
       <p class="mono eyebrow amber">${esc(eyebrowOf(it, taken))}</p>
       <h2 class="display md">${esc(shortOf(it))}</h2>
       <p class="sub">${esc(sub)}</p>

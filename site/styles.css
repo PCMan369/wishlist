@@ -275,3 +275,22 @@ input:focus-visible{outline:2px solid var(--ink);outline-offset:1px}
 /* Hero: give the headline room so a model name like "iPhone 18 Pro" stays on one line at the same size */
 .hero{grid-template-columns:minmax(0,1fr) minmax(220px,.5fr)}
 @media (max-width:1000px){.hero{grid-template-columns:1fr}}
+
+/* Wide screens: a taller, poster-like hero, and compact side-by-side full-width sections (they alternate sides). */
+.mod-text{display:flex;flex-direction:column;align-items:center}
+@media (min-width:1001px){
+  .hero{min-height:clamp(560px,72vh,720px);padding-top:72px;padding-bottom:72px}
+  .module{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.62fr);gap:40px;align-items:center;text-align:left;padding:56px 56px}
+  .module .mod-text{align-items:flex-start}
+  .module .actions.center{justify-content:flex-start}
+  .module .progress{margin:22px 0 0}
+  .module .display.md{text-wrap:balance}
+  .module-art{width:100%;max-width:520px;justify-self:center;margin-top:0}
+  .module-art .plate{aspect-ratio:16/10}
+  .modules .module:nth-child(even){grid-template-columns:minmax(0,.62fr) minmax(0,1fr)}
+  .modules .module:nth-child(even) .module-art{order:-1}
+}
+@media (min-width:1400px){
+  .hero{max-width:1480px;grid-template-columns:minmax(0,1fr) minmax(0,560px)}
+  .hero-art .plate{width:min(100%,560px)}
+}
