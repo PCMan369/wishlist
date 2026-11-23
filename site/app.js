@@ -590,6 +590,49 @@ function closeSheet() {
   else { history.replaceState(null, "", location.pathname + location.search); hideSheet(); }
 }
 
+/* Swipe the details panel to the right to close it (touch). Photos keep their own sideways swipe. */
+function wireSwipeClose() {
+  const panel = $(".dpanel"), scrim = $("#scrim"), drawer = $("#drawer");
+  let x0 = 0, y0 = 0, t0 = 0, mode = "idle", dx = 0;
+  const reset = () => { panel.style.transition = ""; panel.style.transform = ""; scrim.style.transition = ""; scrim.style.opacity = ""; };
+  panel.addEventListener("touchstart", e => {
+    mode = "idle";
+    if (e.touches.length !== 1 || !drawer.classList.contains("open")) return;
+    const t = e.touches[0], left = panel.getBoundingClientRect().left;
+    // a swipe that starts on the photos belongs to the photos, unless it starts at the panel's left edge
+    if (e.target.closest("#stage, .thumbs") && t.clientX - left > 28) return;
+    x0 = t.clientX; y0 = t.clientY; t0 = e.timeStamp; dx = 0; mode = "track";
+  }, { passive: true });
+  panel.addEventListener("touchmove", e => {
+    if (mode === "idle") return;
+    const t = e.touches[0], mx = t.clientX - x0, my = t.clientY - y0;
+    if (mode === "track") {
+      if (Math.abs(my) > 10 && Math.abs(my) > Math.abs(mx)) { mode = "idle"; return; }   // it is a scroll
+      if (mx > 12 && mx > Math.abs(my) * 1.5) { mode = "drag"; panel.style.transition = "none"; scrim.style.transition = "none"; }
+      else return;
+    }
+    e.preventDefault();
+    dx = Math.max(0, mx);
+    panel.style.transform = `translateX(${dx}px)`;
+    scrim.style.opacity = String(Math.max(0, 1 - dx / panel.offsetWidth));
+  }, { passive: false });
+  const end = e => {
+    if (mode !== "drag") { mode = "idle"; return; }
+    mode = "idle";
+    const w = panel.offsetWidth, v = dx / Math.max(1, e.timeStamp - t0);
+    panel.style.transition = "transform .25s var(--ease)"; scrim.style.transition = "opacity .25s";
+    if (dx > w * 0.33 || (v > 0.6 && dx > 40)) {
+      panel.style.transform = "translateX(100%)"; scrim.style.opacity = "0";
+      setTimeout(() => { reset(); closeSheet(); }, 230);
+    } else {
+      panel.style.transform = "translateX(0)"; scrim.style.opacity = "1";
+      setTimeout(reset, 270);
+    }
+  };
+  panel.addEventListener("touchend", end, { passive: true });
+  panel.addEventListener("touchcancel", end, { passive: true });
+}
+
 function route() {
   const m = location.hash.match(/^#item-(.+)$/);
   let slug = null;
@@ -719,6 +762,7 @@ async function start() {
 
   $("#scrim").addEventListener("click", closeSheet);
   $("#dClose").addEventListener("click", closeSheet);
+  wireSwipeClose();
   document.addEventListener("keydown", e => {
     if (e.key === "Escape" && $("#drawer").classList.contains("open") && !$("#nameDialog").open && !$("#howDialog").open) closeSheet();
   });
