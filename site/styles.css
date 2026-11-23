@@ -294,3 +294,12 @@ input:focus-visible{outline:2px solid var(--ink);outline-offset:1px}
   .hero{max-width:1480px;grid-template-columns:minmax(0,1fr) minmax(0,560px)}
   .hero-art .plate{width:min(100%,560px)}
 }
+
+/* A lone last tile spans the full row: lay it out compactly side by side so it never outgrows the sections above it. */
+@media (min-width:761px){
+  .tile:last-child:nth-child(odd){display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.62fr);gap:40px;align-items:center;text-align:left;padding:48px 56px}
+  .tile:last-child:nth-child(odd) .mod-text{align-items:flex-start}
+  .tile:last-child:nth-child(odd) .actions.center{justify-content:flex-start}
+  .tile:last-child:nth-child(odd) .progress{margin:22px 0 0}
+  .tile:last-child:nth-child(odd) .tile-art{width:100%;max-width:400px;justify-self:center;margin-top:0}
+}

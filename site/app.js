@@ -393,7 +393,7 @@ function tileHtml(it, i) {
   const { taken, s } = cardParts(it);
   const sub = [taglineOf(it), priceText(it)].filter(Boolean).join(". ") + ".";
   return `<section class="tile${fadeAttr(i)}${taken ? "; " : ""}" data-taken="${taken ? 1 : 0}">` +
-    `<div class="tile-in${taken ? " is-taken" : ""}" style="display:contents">
+    `<div class="mod-text tile-in${taken ? " is-taken" : ""}">
       <p class="mono eyebrow ${taken ? "" : "amber"}">${esc(eyebrowOf(it, taken))}</p>
       <h2 class="display sm">${esc(shortOf(it))}</h2>
       <p class="sub">${esc(sub)}</p>
