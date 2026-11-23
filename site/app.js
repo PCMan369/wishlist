@@ -633,6 +633,22 @@ function wireSwipeClose() {
   panel.addEventListener("touchcancel", end, { passive: true });
 }
 
+/* Phones: the top bar slides away while you scroll down and returns when you scroll up. */
+function wireBarAutoHide() {
+  const bar = $("#bar"), mq = window.matchMedia("(max-width: 760px)");
+  let last = window.scrollY, ticking = false;
+  const update = () => {
+    ticking = false;
+    const y = Math.max(0, window.scrollY), d = y - last;
+    if (!mq.matches || y < 140 || document.body.classList.contains("lock")) bar.classList.remove("away");
+    else if (d > 8) bar.classList.add("away");
+    else if (d < -8) bar.classList.remove("away");
+    if (Math.abs(d) > 8 || y < 140) last = y;
+  };
+  window.addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+  mq.addEventListener("change", () => bar.classList.remove("away"));
+}
+
 function route() {
   const m = location.hash.match(/^#item-(.+)$/);
   let slug = null;
@@ -763,6 +779,7 @@ async function start() {
   $("#scrim").addEventListener("click", closeSheet);
   $("#dClose").addEventListener("click", closeSheet);
   wireSwipeClose();
+  wireBarAutoHide();
   document.addEventListener("keydown", e => {
     if (e.key === "Escape" && $("#drawer").classList.contains("open") && !$("#nameDialog").open && !$("#howDialog").open) closeSheet();
   });

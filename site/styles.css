@@ -303,3 +303,12 @@ input:focus-visible{outline:2px solid var(--ink);outline-offset:1px}
   .tile:last-child:nth-child(odd) .progress{margin:22px 0 0}
   .tile:last-child:nth-child(odd) .tile-art{width:100%;max-width:400px;justify-self:center;margin-top:0}
 }
+
+/* Phones: auto-hiding bar, price above the buttons */
+.bar{transition:transform .3s var(--ease),background .3s}
+@media (max-width:760px){
+  .bar.away{transform:translateY(-100%)}
+  .hero .actions .price{order:-1;flex-basis:100%;margin-bottom:2px}
+}
+/* "How claiming works": bigger tap area without changing how it looks */
+.strip .linkbtn{display:inline-block;padding:12px 8px;margin:-12px -8px}
