@@ -455,10 +455,11 @@ function drawerHtml(it) {
     <div class="dprice"><span>${esc(priceText(it))}</span>${it.split ? `<span class="tag">Split OK</span>` : ""}</div>
     <div id="claimBox"></div>
     ${version.length ? `<section class="dsec"><span class="label mono">${esc(it.versionTitle || "Make sure it's this version")}</span><dl class="rows">${version.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl></section>` : ""}
+    ${(it.substitutes || it.unacceptable) ? `<section class="dsec"><span class="label mono">If you can't find this exact one</span>${it.substitutes ? `<h5 class="ok">Fine instead</h5><p>${esc(it.substitutes)}</p>` : ""}${it.unacceptable ? `<h5 class="no">Please avoid</h5><p>${esc(it.unacceptable)}</p>` : ""}</section>` : ""}
     ${stores.length ? `<section class="dsec"><span class="label mono">Where to buy</span><div class="rows">${stores.map(s => `<a href="${esc(s.link)}" target="_blank" rel="noopener"><span class="rname">${esc(s.name)} ↗${hi > lo && num(s.price) === lo ? `<span class="lowest">LOWEST</span>` : ""}</span><span class="rprice">${money(num(s.price))}</span></a>`).join("")}</div>${extras}</section>`
       : (extras || link) ? `<section class="dsec">${extras}</section>` : ""}
-    ${(it.why || it.whyThis) ? `<section class="dsec"><span class="label mono">Why I want this</span>${it.why ? `<p>${esc(it.why)}</p>` : ""}${it.whyThis ? `<h5>Why this exact one</h5><p>${esc(it.whyThis)}</p>` : ""}</section>` : ""}
-    ${(it.substitutes || it.unacceptable) ? `<section class="dsec"><span class="label mono">If you can't find this exact one</span>${it.substitutes ? `<h5 class="ok">Fine instead</h5><p>${esc(it.substitutes)}</p>` : ""}${it.unacceptable ? `<h5 class="no">Please avoid</h5><p>${esc(it.unacceptable)}</p>` : ""}</section>` : ""}
+    ${it.why ? `<section class="dsec"><span class="label mono">Why I want this</span><p>${esc(it.why)}</p></section>` : ""}
+    ${it.whyThis ? `<section class="dsec"><span class="label mono">Why this exact one</span><p>${esc(it.whyThis)}</p></section>` : ""}
   `;
 }
 

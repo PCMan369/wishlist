@@ -267,3 +267,11 @@ input:focus-visible{outline:2px solid var(--ink);outline-offset:1px}
 
 .keep{display:flex;align-items:center;gap:10px;font-size:15px;color:var(--muted);cursor:pointer}
 .keep input{width:20px;height:20px;accent-color:#F5F5F7;flex:none}
+
+/* Details: clearer "fine instead / avoid" markers (not color alone) */
+.dsec h5.ok::before{content:"\2713\00a0\00a0"}
+.dsec h5.no::before{content:"\2715\00a0\00a0"}
+.dsec h5.ok,.dsec h5.no{font-size:14px}
+/* Hero: give the headline room so a model name like "iPhone 18 Pro" stays on one line at the same size */
+.hero{grid-template-columns:minmax(0,1fr) minmax(220px,.5fr)}
+@media (max-width:1000px){.hero{grid-template-columns:1fr}}
