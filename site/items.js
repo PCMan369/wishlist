@@ -68,7 +68,7 @@ window.WISHLIST_ITEMS = [
     version: [["Model", "E2 Ultra"], ["Color", "Grey"]],
     why: "Increases efficiency and speed of PC builds, thereby increasing my profit per hour.",
     whyThis: "I chose this model because it is a known-reliable unit, has plenty of bits, and has a good battery life.",
-    substitutes: "Any reliable electric screwdriver with a variety of bits and adjustable torque under about 0.67 N·m.",
+    substitutes: "Any reliable electric screwdriver with a variety of bits and adjustable torque, with a maximum of about 0.67 N·m or lower.",
     notes: "", link: "https://www.amazon.com/dp/B0DSVKLNQR" },
 
   { id: "air-duster", name: "Fanttik B10 Pro Max Electric Air Duster with Powerbank (Grey)", short: "Fanttik B10 Pro Max", tagline: "Electric air duster", badge: "Black Friday price",
