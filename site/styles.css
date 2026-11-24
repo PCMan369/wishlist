@@ -314,3 +314,5 @@ input:focus-visible{outline:2px solid var(--ink);outline-offset:1px}
 .strip .linkbtn{display:inline-block;padding:12px 8px;margin:-12px -8px}
 
 .filters.fade-r{-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 44px),transparent);mask-image:linear-gradient(to right,#000 calc(100% - 44px),transparent)}
+.filters.fade-l{-webkit-mask-image:linear-gradient(to right,transparent,#000 44px);mask-image:linear-gradient(to right,transparent,#000 44px)}
+.filters.fade-l.fade-r{-webkit-mask-image:linear-gradient(to right,transparent,#000 44px,#000 calc(100% - 44px),transparent);mask-image:linear-gradient(to right,transparent,#000 44px,#000 calc(100% - 44px),transparent)}

@@ -649,10 +649,14 @@ function wireBarAutoHide() {
   mq.addEventListener("change", () => bar.classList.remove("away"));
 }
 
-/* Phones: a soft fade on the right edge of the filter row while there is more to scroll to. */
+/* Phones: a soft fade on each edge of the filter row that has more to scroll to. */
 function wireChipFade() {
   const el = $("#chips");
-  const update = () => el.classList.toggle("fade-r", el.scrollWidth > el.clientWidth + 2 && el.scrollLeft + el.clientWidth < el.scrollWidth - 4);
+  const update = () => {
+    const can = el.scrollWidth > el.clientWidth + 2;
+    el.classList.toggle("fade-l", can && el.scrollLeft > 4);
+    el.classList.toggle("fade-r", can && el.scrollLeft + el.clientWidth < el.scrollWidth - 4);
+  };
   el.addEventListener("scroll", update, { passive: true });
   window.addEventListener("resize", update);
   new MutationObserver(update).observe(el, { childList: true });
