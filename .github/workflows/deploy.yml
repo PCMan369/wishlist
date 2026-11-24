@@ -3,6 +3,7 @@ name: Deploy site
 # Runs every time you save a change on github.com (or push from your computer).
 # If a typo breaks the settings or items, the check step fails and the live site
 # keeps showing the last good version. Look for the red X on the Actions tab.
+# If a run shows a red X on "deploy" with an "artifact" message, click "Re-run all jobs".
 on:
   push:
     branches: [main]
@@ -18,11 +19,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
 
@@ -39,5 +37,12 @@ jobs:
         with:
           path: site
 
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - id: deployment
         uses: actions/deploy-pages@v5
