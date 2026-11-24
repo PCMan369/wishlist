@@ -50,6 +50,7 @@
   </header>
 
   <div class="strip" id="strip"></div>
+  <div class="mine" id="mine" hidden></div>
 
   <main id="list" aria-live="polite"></main>
 
@@ -82,7 +83,7 @@
   <dialog id="nameDialog" class="dialog">
     <form method="dialog">
       <h3>Who's this from?</h3>
-      <p class="mini">So the rest of the family can see who's getting what. We'll remember it on this device.</p>
+      <p class="mini">So the rest of the family can see who's getting what. Please use the same name every time, so your claims stay together. We'll remember it on this device.</p>
       <label class="sr-only" for="nameInput">Your name</label>
       <input id="nameInput" type="text" maxlength="40" placeholder="Your name" required autocomplete="given-name" enterkeyhint="done">
       <div class="dialog-actions">
@@ -96,10 +97,19 @@
   <dialog id="howDialog" class="dialog">
     <form method="dialog">
       <h3>How claiming works</h3>
-      <p class="mini">Tap an item to see the details. Choose “I'll get this one” so nobody else buys it too. Bigger items can be split, so you can chip in any amount. Your name is asked once and remembered on this device.</p>
+      <p class="mini">Tap an item to see the details. Choose “I'll get this one” so nobody else buys it too. Bigger items can be split, so you can chip in any amount. Your name is asked once and remembered on this device. Other guests will see it next to what you claim, but Jacob won't: his view of this page never loads claims. Please always use the same name, so your claims stay together.</p>
       <div class="dialog-actions">
         <button class="btn primary small" value="ok">Got it</button>
       </div>
+    </form>
+  </dialog>
+
+  <dialog id="mineDialog" class="dialog">
+    <form method="dialog">
+      <h3>Your claims</h3>
+      <p class="mini" id="mineWho"></p>
+      <ul class="mrows" id="mineRows"></ul>
+      <div class="dialog-actions"><button class="btn primary small" value="ok">Done</button></div>
     </form>
   </dialog>
 

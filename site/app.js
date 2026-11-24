@@ -550,7 +550,7 @@ function renderDrawerDynamic() {
   $("#dFoot").innerHTML = footHtml(current);
 }
 
-const PAGE_PARTS = "#bar,#strip,#list,#note,#about,#foot,#preview";
+const PAGE_PARTS = "#bar,#strip,#mine,#list,#note,#about,#foot,#preview";
 function showSheet(it) {
   const drawer = $("#drawer");
   if (current && current.slug === it.slug && drawer.classList.contains("open")) return;
@@ -744,6 +744,34 @@ async function doPledge(it) {
   } catch (e) { toast(failMsg(e)); }
 }
 
+/* "Your claims": a slim summary under the top bar, and a list with Remove buttons. */
+function myPledges() { return state.pledges.filter(isMine).sort((x, y) => (x.ts || 0) - (y.ts || 0)); }
+const isFull = p => String(p.id).startsWith("full_");
+function renderMine() {
+  const el = $("#mine");
+  const mine = showsClaims() && state.ready ? myPledges() : [];
+  el.hidden = !mine.length;
+  if (mine.length) {
+    const full = mine.filter(isFull), gifts = mine.filter(p => !isFull(p));
+    const total = gifts.reduce((s, p) => s + (num(p.amount) || 0), 0);
+    const bits = [];
+    if (full.length) bits.push(`${full.length} ${full.length === 1 ? "item" : "items"} claimed`);
+    if (gifts.length) bits.push(`${money(total)} chipped in`);
+    el.innerHTML = `<span>You: ${bits.join(" · ")}</span> <button type="button" class="linkbtn" id="mineBtn">View ›</button>`;
+  }
+  const dlg = $("#mineDialog");
+  if (dlg.open) fillMineDialog(mine);
+}
+function fillMineDialog(mine = myPledges()) {
+  $("#mineWho").textContent = state.name
+    ? `Showing everything under the name “${state.name}”. Always use the same name so it all stays together.`
+    : "Showing the claims made on this device.";
+  $("#mineRows").innerHTML = mine.length ? mine.map(p => {
+    const it = ITEMS.find(i => i.id === p.itemId);
+    return `<li><a href="#item-${esc(it ? it.slug : p.itemId)}" data-go="1"><span>${esc(it ? shortOf(it) : p.itemId)}</span><b>${isFull(p) ? "Claimed" : money(num(p.amount) || 0)}</b></a><button type="button" class="x" data-remove="${esc(p.id)}" aria-label="Remove">Remove</button></li>`;
+  }).join("") : `<li class="empty">Nothing yet.</li>`;
+}
+
 async function doRemove(id) {
   if (!confirm("Remove this? Others will see it as available again.")) return;
   try { await store.remove(id); state.mine.delete(id); saveMine(); toast("Removed."); }
@@ -754,6 +782,7 @@ async function doRemove(id) {
    Start
    ===================================================== */
 function refresh() {
+  renderMine();
   renderList(false);
   renderChips();
   if (current) renderDrawerDynamic();
@@ -768,6 +797,12 @@ async function start() {
   renderChrome(); renderChips(); renderList(true);
 
   $("#strip").addEventListener("click", e => { if (e.target.closest("#howBtn")) $("#howDialog").showModal(); });
+  $("#mine").addEventListener("click", e => { if (e.target.closest("#mineBtn")) { fillMineDialog(); $("#mineDialog").showModal(); } });
+  $("#mineDialog").addEventListener("click", e => {
+    const rm = e.target.closest("[data-remove]");
+    if (rm) { e.preventDefault(); doRemove(rm.dataset.remove); return; }
+    if (e.target.closest("[data-go]")) $("#mineDialog").close();
+  });
 
   $("#chips").addEventListener("click", e => {
     const b = e.target.closest("[data-filter]");
