@@ -649,6 +649,16 @@ function wireBarAutoHide() {
   mq.addEventListener("change", () => bar.classList.remove("away"));
 }
 
+/* Phones: a soft fade on the right edge of the filter row while there is more to scroll to. */
+function wireChipFade() {
+  const el = $("#chips");
+  const update = () => el.classList.toggle("fade-r", el.scrollWidth > el.clientWidth + 2 && el.scrollLeft + el.clientWidth < el.scrollWidth - 4);
+  el.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("resize", update);
+  new MutationObserver(update).observe(el, { childList: true });
+  update();
+}
+
 function route() {
   const m = location.hash.match(/^#item-(.+)$/);
   let slug = null;
@@ -780,6 +790,7 @@ async function start() {
   $("#dClose").addEventListener("click", closeSheet);
   wireSwipeClose();
   wireBarAutoHide();
+  wireChipFade();
   document.addEventListener("keydown", e => {
     if (e.key === "Escape" && $("#drawer").classList.contains("open") && !$("#nameDialog").open && !$("#howDialog").open) closeSheet();
   });
